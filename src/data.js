@@ -1,6 +1,30 @@
-export const projectFilters = ['All', 'CI/CD', 'Cloud', 'Automation', 'Observability'];
+export const projectFilters = ['All', 'AI', 'CI/CD', 'Cloud', 'Automation', 'Observability'];
 
 export const projects = [
+  {
+    title: 'Personal Website Platform',
+    description:
+      'Designed and deployed this portfolio as a lightweight edge-hosted web platform using Vercel for delivery and Cloudflare for DNS, networking, and HTTPS routing.',
+    details:
+      'Built and deployed the personal site on Vercel to take advantage of fast static hosting, streamlined deployments, and production-friendly preview workflows. Used Cloudflare at the DNS and networking layer to manage domain routing, edge resolution, and HTTPS-related traffic handling. The setup provides a clean separation of responsibilities: Vercel handles application hosting and deployment, while Cloudflare provides domain management, DNS control, and edge-level request delivery. This created a practical production-style setup with secure HTTPS access, reliable routing, and a deployment workflow that is simple to maintain.',
+    tech: ['Vercel', 'Cloudflare', 'DNS', 'HTTPS'],
+    tags: ['Cloud', 'Automation'],
+    github: '',
+    demo: '',
+    metrics: ['Vercel-hosted deployment pipeline', 'Cloudflare-managed DNS and edge routing', 'Secure HTTPS-enabled public delivery'],
+  },
+  {
+    title: 'Career Agent',
+    description:
+      'Built a multi-agent career workflow system that coordinates job-search tasks through REST API calls and agent-driven orchestration.',
+    details:
+      'Designed and built a career-focused multi-agent solution with Claude Code, where specialized agents handled distinct tasks such as workflow coordination, opportunity processing, and career-material iteration. The system used REST API calls between services to exchange structured data, trigger downstream actions, and keep the overall workflow modular and extensible.',
+    tech: ['Claude Code', 'Multi-Agent Systems', 'REST APIs', 'Automation'],
+    tags: ['AI', 'Automation'],
+    github: '',
+    demo: '',
+    metrics: ['Multi-agent task orchestration', 'REST API-driven service communication', 'Modular career workflow automation'],
+  },
   {
     title: 'CI/CD Onboarding Platform',
     description:
