@@ -19,7 +19,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="mb-5 text-sm uppercase tracking-[0.34em] text-cyan-300/80"
+            className="mb-5 text-sm uppercase tracking-[0.34em] text-cyan-300/80 light:text-sky-700"
           >
             Infrastructure. Automation. Reliability.
           </motion.p>
@@ -27,7 +27,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05, duration: 0.55 }}
-            className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl"
+            className="max-w-4xl text-5xl font-semibold tracking-tight text-white light:text-slate-950 sm:text-6xl lg:text-7xl"
           >
             Alihan Cakiralioglu
           </motion.h1>
@@ -37,8 +37,8 @@ export function Hero() {
             transition={{ delay: 0.12, duration: 0.55 }}
             className="mt-6 max-w-3xl"
           >
-            <p className="text-xl font-medium text-slate-100 sm:text-2xl">DevOps / Platform Engineer</p>
-            <p className="mt-4 text-base leading-8 text-slate-300 sm:text-lg">
+            <p className="text-xl font-medium text-slate-100 light:text-slate-900 sm:text-2xl">DevOps / Platform Engineer</p>
+            <p className="mt-4 text-base leading-8 text-slate-300 light:text-slate-600 sm:text-lg">
               I build scalable infrastructure, automate systems, and design resilient platforms.
             </p>
           </motion.div>
@@ -56,7 +56,7 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="text-sm font-medium text-slate-300 transition hover:text-white"
+              className="text-sm font-medium text-slate-300 transition hover:text-white light:text-slate-600 light:hover:text-slate-950"
             >
               Or get in touch
             </a>
@@ -67,21 +67,28 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.18, duration: 0.65 }}
-          className="relative rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.5)] backdrop-blur-xl"
+          className="relative mx-auto w-full max-w-[32rem]"
         >
-          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              ['Core Focus', 'Platform engineering, release systems, and operational leverage'],
-              ['Preferred Stack', 'AWS, Terraform, Jenkins, Azure DevOps, Splunk, Ansible'],
-              ['Operating Model', 'Paved roads, self-service workflows, safe automation'],
-              ['Delivery Style', 'Fast feedback, resilient systems, clear ownership'],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-400">{label}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-200">{value}</p>
-              </div>
-            ))}
+          <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
+          <div className="relative overflow-hidden rounded-[2.2rem] border border-white/10 bg-white/5 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.5)] backdrop-blur-xl light:border-slate-300/70 light:bg-white/70 light:shadow-[0_24px_60px_rgba(148,163,184,0.22)] sm:p-5">
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute left-10 top-12 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl light:bg-sky-400/18" />
+              <div className="absolute bottom-0 right-0 h-52 w-52 rounded-full bg-indigo-500/8 blur-3xl light:bg-blue-300/20" />
+            </div>
+
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/50 light:border-slate-300/70 light:bg-white/60">
+              <img
+                src="/websitepic.png"
+                alt="Portrait of Alihan Cakiralioglu"
+                className="block h-auto w-full light:hidden"
+              />
+              <img
+                src="/websitepicLight.png"
+                alt="Portrait of Alihan Cakiralioglu"
+                className="hidden h-auto w-full light:block"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.02)_0%,rgba(2,6,23,0.06)_58%,rgba(2,6,23,0.18)_100%)] light:bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.02)_52%,rgba(148,163,184,0.10)_100%)]" />
+            </div>
           </div>
         </motion.div>
       </div>
