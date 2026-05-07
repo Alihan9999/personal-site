@@ -5,6 +5,7 @@ import { BlogCard } from '../components/BlogCard';
 import { Hero } from '../components/Hero';
 import { ProjectCard } from '../components/ProjectCard';
 import { SectionWrapper } from '../components/SectionWrapper';
+import { FilterBar } from '../components/primitives';
 import { blogFilters, capabilities, contactLinks, posts, projectFilters, projects, skills } from '../data';
 
 export function Home() {
@@ -49,23 +50,12 @@ export function Home() {
         title="Platform engineering projects with measurable operational leverage."
         description="The strongest work is usually the least visible: fewer manual handoffs, faster releases, and infrastructure that scales without drama."
       >
-        <div className="mb-8 flex flex-wrap gap-3">
-          {projectFilters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              aria-pressed={projectFilter === filter}
-              onClick={() => setProjectFilter(filter)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
-                projectFilter === filter
-                  ? 'bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.2)]'
-                  : 'border border-white/10 bg-white/[0.04] text-slate-200 hover:border-cyan-300/40'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        <FilterBar
+          options={projectFilters}
+          value={projectFilter}
+          onChange={setProjectFilter}
+          className="mb-8"
+        />
 
         <AnimatePresence mode="popLayout">
           <motion.div layout className="grid gap-6 lg:grid-cols-3">
@@ -90,23 +80,12 @@ export function Home() {
       >
         {/* anchor alias for backward compatibility with #blog deep-links */}
         <span id="blog" className="sr-only" aria-hidden="true" />
-        <div className="mb-8 flex flex-wrap gap-3">
-          {blogFilters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              aria-pressed={blogFilter === filter}
-              onClick={() => setBlogFilter(filter)}
-              className={`rounded-full px-4 py-2 text-sm transition ${
-                blogFilter === filter
-                  ? 'bg-cyan-400 text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.2)]'
-                  : 'border border-white/10 bg-white/[0.04] text-slate-200 hover:border-cyan-300/40'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        <FilterBar
+          options={blogFilters}
+          value={blogFilter}
+          onChange={setBlogFilter}
+          className="mb-8"
+        />
 
         <motion.div layout className="grid gap-6 lg:grid-cols-3">
           {visiblePosts.map((post) => (
