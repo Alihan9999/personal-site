@@ -1,17 +1,9 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card, StatusDot } from '../primitives';
-import { currentFocus, lastDeploy, posts, sinceDates } from '../../data';
-
-const dayDiff = (iso) => {
-  const then = new Date(iso).getTime();
-  const now = Date.now();
-  if (Number.isNaN(then)) return '—';
-  return Math.max(1, Math.floor((now - then) / (1000 * 60 * 60 * 24)));
-};
+import { buildAge, buildCommit, currentFocus, homelabUptime, posts } from '../../data';
 
 export function NowRunning() {
-  const homelabDays = dayDiff(sinceDates.homelabBootstrap);
   const recentPost = posts[0];
 
   return (
@@ -42,18 +34,16 @@ export function NowRunning() {
         </Card>
         <Card variant="square" className="lg:col-span-3">
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">homelab uptime</p>
-          <p className="mt-3 font-mono text-3xl text-phosphor-400">{homelabDays}d</p>
+          <p className="mt-3 font-mono text-3xl text-phosphor-400">{homelabUptime()}</p>
           <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500">
             since bootstrap
           </p>
         </Card>
         <Card variant="square" className="lg:col-span-3">
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-slate-500">last deploy</p>
-          <p className="mt-3 font-mono text-base text-amber-400">
-            {lastDeploy.repo}@{lastDeploy.ref}
-          </p>
+          <p className="mt-3 font-mono text-base text-amber-400">personal-site@{buildCommit}</p>
           <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500">
-            {lastDeploy.ago} ago
+            {buildAge()}
           </p>
         </Card>
         <Card variant="full" className="lg:col-span-12">

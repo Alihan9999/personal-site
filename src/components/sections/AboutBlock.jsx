@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card, SectionHeader } from '../primitives';
+import { InfraDiagram } from '../InfraDiagram';
 
 export function AboutBlock() {
   return (
@@ -21,18 +22,28 @@ export function AboutBlock() {
       <div className="grid grid-cols-12 gap-4">
         <Card variant="half" className="lg:col-span-4 items-center justify-center p-0">
           <div className="relative w-full overflow-hidden rounded-[1.5rem] bg-graphite-900">
-            <img
-              src="/websitepic.png"
-              alt="Portrait of Alihan Cakiralioglu"
-              className="block h-auto w-full light:hidden"
-              loading="lazy"
-            />
-            <img
-              src="/websitepicLight.png"
-              alt="Portrait of Alihan Cakiralioglu"
-              className="hidden h-auto w-full light:block"
-              loading="lazy"
-            />
+            <picture className="block light:hidden">
+              <source srcSet="/websitepic.avif" type="image/avif" />
+              <source srcSet="/websitepic.webp" type="image/webp" />
+              <img
+                src="/websitepic.png"
+                alt="Portrait of Alihan Cakiralioglu"
+                className="block h-auto w-full"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <picture className="hidden light:block">
+              <source srcSet="/websitepicLight.avif" type="image/avif" />
+              <source srcSet="/websitepicLight.webp" type="image/webp" />
+              <img
+                src="/websitepicLight.png"
+                alt="Portrait of Alihan Cakiralioglu"
+                className="hidden h-auto w-full light:block"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div
               className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,9,12,0.0)_55%,rgba(7,9,12,0.55)_100%)]"
               aria-hidden="true"
@@ -55,6 +66,9 @@ export function AboutBlock() {
               observable, and keep the team out of pager-duty whenever possible.
             </p>
           </div>
+        </Card>
+        <Card variant="full" className="lg:col-span-12">
+          <InfraDiagram />
         </Card>
       </div>
     </motion.section>
