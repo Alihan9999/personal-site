@@ -9,13 +9,32 @@ export function Modal({ open, onClose, layoutId, labelledBy, children }) {
     if (!open) return undefined;
     previouslyFocusedRef.current = document.activeElement;
     const node = containerRef.current;
-    const focusable = node?.querySelector(
-      'a, button, [tabindex]:not([tabindex="-1"]), input, select, textarea',
-    );
-    (focusable ?? node)?.focus?.();
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])';
+    const first = node?.querySelector(focusableSelector);
+    (first ?? node)?.focus?.();
 
     const handleKey = (event) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusables = node ? Array.from(node.querySelectorAll(focusableSelector)) : [];
+      if (focusables.length === 0) {
+        event.preventDefault();
+        return;
+      }
+      const firstEl = focusables[0];
+      const lastEl = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === firstEl || !node?.contains(active))) {
+        event.preventDefault();
+        lastEl.focus();
+      } else if (!event.shiftKey && active === lastEl) {
+        event.preventDefault();
+        firstEl.focus();
+      }
     };
     window.addEventListener('keydown', handleKey);
     return () => {
