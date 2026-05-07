@@ -1,5 +1,6 @@
 export { Card } from './Card';
 export { Chip } from './Chip';
+export { CodeRain } from './CodeRain';
 export { FilterBar } from './FilterBar';
 export { MagneticCursor } from './MagneticCursor';
 export { MetadataFooter } from './MetadataFooter';
