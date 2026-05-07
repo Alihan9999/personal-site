@@ -29,8 +29,8 @@ function RootLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.12),_transparent_30%),linear-gradient(180deg,_#020617_0%,_#0f172a_45%,_#020617_100%)] text-slate-100 transition-colors duration-300 light:bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.10),_transparent_24%),linear-gradient(180deg,_#e2e8f0_0%,_#f8fafc_50%,_#e2e8f0_100%)] light:text-slate-900">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)] light:bg-[linear-gradient(rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.04)_1px,transparent_1px)]" />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(245,158,11,0.10),_transparent_30%),linear-gradient(180deg,_#07090c_0%,_#131922_45%,_#07090c_100%)] text-slate-100 transition-colors duration-300 light:bg-[radial-gradient(circle_at_top,_rgba(245,158,11,0.08),_transparent_28%),linear-gradient(180deg,_#fbf9f4_0%,_#ffffff_50%,_#f3efe6_100%)] light:text-ink-900">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(110,231,168,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(110,231,168,0.035)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)] light:bg-[linear-gradient(rgba(20,22,26,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(20,22,26,0.04)_1px,transparent_1px)]" />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <AnimatePresence mode="wait">
         <main key={location.pathname}>
