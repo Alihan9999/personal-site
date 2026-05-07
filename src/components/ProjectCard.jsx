@@ -1,6 +1,8 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Chip, Modal } from './primitives';
 
 export function ProjectCard({ project, isExpanded, onOpen, onClose }) {
+  const titleId = `project-${project.slug}-title`;
   return (
     <>
       <motion.article
@@ -18,20 +20,17 @@ export function ProjectCard({ project, isExpanded, onOpen, onClose }) {
 
         <div className="mt-5 flex flex-wrap gap-2">
           {project.tech.map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-white/10 bg-slate-900/70 px-3 py-1 text-xs text-slate-200"
-            >
+            <Chip key={item} variant="tech">
               {item}
-            </span>
+            </Chip>
           ))}
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className="rounded-full bg-cyan-400/10 px-3 py-1 text-xs text-cyan-200">
+            <Chip key={tag} variant="tag">
               {tag}
-            </span>
+            </Chip>
           ))}
         </div>
 
@@ -66,51 +65,33 @@ export function ProjectCard({ project, isExpanded, onOpen, onClose }) {
         </div>
       </motion.article>
 
-      <AnimatePresence>
-        {isExpanded ? (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-end justify-center bg-slate-950/75 p-4 backdrop-blur-md sm:items-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      <Modal open={isExpanded} onClose={onClose} layoutId={project.slug} labelledBy={titleId}>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm uppercase tracking-[0.25em] text-cyan-300/70">Project Snapshot</p>
+            <h3 id={titleId} className="mt-3 text-2xl font-semibold text-white">
+              {project.title}
+            </h3>
+          </div>
+          <button
+            type="button"
             onClick={onClose}
+            className="rounded-full border border-white/10 px-3 py-2 text-sm text-slate-200"
           >
-            <motion.div
-              layoutId={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 24 }}
-              transition={{ duration: 0.3 }}
-              onClick={(event) => event.stopPropagation()}
-              className="w-full max-w-2xl rounded-[2rem] border border-white/10 bg-slate-900/95 p-7 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-cyan-300/70">Project Snapshot</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-white">{project.title}</h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="rounded-full border border-white/10 px-3 py-2 text-sm text-slate-200"
-                >
-                  Close
-                </button>
-              </div>
+            Close
+          </button>
+        </div>
 
-              <p className="mt-5 text-sm leading-7 text-slate-300">{project.details}</p>
+        <p className="mt-5 text-sm leading-7 text-slate-300">{project.details}</p>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {project.metrics.map((metric) => (
-                  <div key={metric} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                    <p className="text-sm leading-6 text-slate-200">{metric}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          {project.metrics.map((metric) => (
+            <div key={metric} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <p className="text-sm leading-6 text-slate-200">{metric}</p>
+            </div>
+          ))}
+        </div>
+      </Modal>
     </>
   );
 }

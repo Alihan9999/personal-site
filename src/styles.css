@@ -1,18 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @import "tailwindcss";
 @custom-variant light (&:where(.light, .light *));
 
+@theme {
+  /* Phosphor terminal green — live data, status indicators */
+  --color-phosphor-300: #6ee7a8;
+  --color-phosphor-400: #34d39a;
+  --color-phosphor-500: #10b981;
+  --color-phosphor-600: #059669;
+
+  /* Electric amber — primary accent, CTAs, warnings */
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #f59e0b;
+  --color-amber-500: #d97706;
+  --color-amber-600: #b45309;
+
+  /* Graphite — near-black warm base for dark theme */
+  --color-graphite-700: #1d2531;
+  --color-graphite-800: #131922;
+  --color-graphite-900: #0c1016;
+  --color-graphite-950: #07090c;
+
+  /* Ivory + ink — light theme */
+  --color-ivory-50: #fbf9f4;
+  --color-ivory-100: #f3efe6;
+  --color-ink-700: #2b2f36;
+  --color-ink-900: #14161a;
+
+  /* Override cyan to render as amber/phosphor for legacy class strings */
+  --color-cyan-200: #fcd34d;
+  --color-cyan-300: #f59e0b;
+  --color-cyan-400: #f59e0b;
+
+  /* Fonts */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
 :root {
   color-scheme: dark;
-  font-family:
-    "Manrope",
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  background: #020617;
+  font-family: var(--font-sans);
+  background: var(--color-graphite-950);
 }
 
 html {
@@ -21,6 +49,7 @@ html {
 
 html.light {
   color-scheme: light;
+  background: var(--color-ivory-50);
 }
 
 body {
@@ -43,6 +72,17 @@ button {
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.24);
+  background: rgba(245, 158, 11, 0.28);
   color: white;
+}
+
+/* Subtle scanline overlay for terminal surfaces */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
