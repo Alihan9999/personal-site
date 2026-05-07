@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { CommandPalette } from './components/CommandPalette';
+import { MagneticCursor } from './components/primitives';
 import { Navbar } from './components/Navbar';
 import { useTheme } from './theme/useTheme';
 import { Home } from './pages/Home';
@@ -37,7 +38,13 @@ function RootLayout() {
           <Outlet />
         </main>
       </AnimatePresence>
-      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
+      <MagneticCursor />
     </div>
   );
 }
