@@ -76,7 +76,7 @@ export function ProjectCard({ project, isExpanded, onOpen, onClose }) {
             onClick={onClose}
           >
             <motion.div
-              layoutId={project.title}
+              layoutId={project.slug}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 24 }}
