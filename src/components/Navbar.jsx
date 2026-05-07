@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { useActiveSection } from '../hooks/useActiveSection';
@@ -13,14 +13,22 @@ const navItems = [
 
 const sectionIds = navItems.map((item) => item.section);
 
-export function Navbar({ theme, onToggleTheme }) {
+export function Navbar({ theme, onToggleTheme, onOpenPalette }) {
   const location = useLocation();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 240, damping: 36, mass: 0.4 });
   const activeSection = useActiveSection(sectionIds);
+  const [isMac, setIsMac] = useState(true);
+
+  useEffect(() => {
+    if (typeof navigator === 'undefined') return;
+    const platform = navigator.userAgentData?.platform ?? navigator.platform ?? '';
+    setIsMac(/mac/i.test(platform));
+  }, []);
 
   const onHome = location.pathname === '/';
   const activeKey = useMemo(() => (onHome ? activeSection : null), [activeSection, onHome]);
+  const modKey = isMac ? '⌘' : 'Ctrl';
 
   return (
     <div className="sticky top-0 z-40 px-4 pt-4 sm:px-6">
@@ -61,6 +69,17 @@ export function Navbar({ theme, onToggleTheme }) {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onOpenPalette}
+            aria-label="Open operator console"
+            title="Open operator console"
+            className="group hidden items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/5 px-3 py-1.5 font-mono text-[0.7rem] text-amber-400 transition hover:border-amber-400/60 hover:bg-amber-400/15 hover:text-amber-300 sm:inline-flex"
+          >
+            <span className="text-phosphor-400 group-hover:text-phosphor-300">$</span>
+            <kbd className="font-mono text-[0.7rem]">{modKey}</kbd>
+            <kbd className="font-mono text-[0.7rem]">K</kbd>
+          </button>
           <button
             type="button"
             onClick={onToggleTheme}
