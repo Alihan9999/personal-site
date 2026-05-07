@@ -7,7 +7,6 @@ import { projectFilters, projects } from '../data';
 
 export function ProjectsIndex() {
   const [filter, setFilter] = useState('All');
-  const [expanded, setExpanded] = useState(null);
 
   const visible = useMemo(() => {
     if (filter === 'All') return projects;
@@ -16,12 +15,14 @@ export function ProjectsIndex() {
 
   return (
     <main className="mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-6 lg:px-8">
-      <Link to="/" className="text-sm text-slate-400 transition hover:text-white">
-        ← Home
+      <Link to="/" className="font-mono text-xs text-slate-400 transition hover:text-phosphor-400">
+        ← home
       </Link>
       <div className="mt-8 mb-10 max-w-3xl">
-        <p className="mb-3 text-sm uppercase tracking-[0.28em] text-cyan-300/70">All Projects</p>
-        <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-amber-400">
+          $ kubectl get projects
+        </p>
+        <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl light:text-ink-900">
           Every shipped project, filterable.
         </h1>
       </div>
@@ -31,13 +32,7 @@ export function ProjectsIndex() {
       <AnimatePresence mode="popLayout">
         <motion.div layout className="grid gap-6 lg:grid-cols-3">
           {visible.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              isExpanded={expanded === project.slug}
-              onOpen={() => setExpanded(project.slug)}
-              onClose={() => setExpanded(null)}
-            />
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </motion.div>
       </AnimatePresence>

@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card, Chip, MetadataFooter, SectionHeader } from '../primitives';
+import { navigateWithTransition } from '../../lib/navigateWithTransition';
 import { featuredProjects } from '../../data';
 
 const variantOrder = ['featured', 'half', 'tall', 'tall'];
 
 function ProjectTile({ project, variant }) {
+  const navigate = useNavigate();
   const meta = project.meta ?? {};
   const items = [
     meta.uptime ? { key: 'uptime', value: meta.uptime } : null,
@@ -13,8 +15,26 @@ function ProjectTile({ project, variant }) {
     meta.lastDeploy ? { key: 'last-deploy', value: meta.lastDeploy } : null,
   ].filter(Boolean);
 
+  const onActivate = () => navigateWithTransition(navigate, `/projects/${project.slug}`);
+
   return (
-    <Card variant={variant} interactive className="text-slate-100 light:text-ink-900">
+    <Card
+      variant={variant}
+      interactive
+      as="div"
+      onClick={onActivate}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onActivate();
+        }
+      }}
+      role="link"
+      tabIndex={0}
+      style={{ viewTransitionName: `project-${project.slug}`, cursor: 'pointer' }}
+      className="text-slate-100 light:text-ink-900"
+      aria-label={`Open ${project.title} case study`}
+    >
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-phosphor-400">
@@ -33,28 +53,9 @@ function ProjectTile({ project, variant }) {
         ))}
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        {project.github ? (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-xs text-amber-400 transition hover:text-amber-300"
-          >
-            $ git clone →
-          </a>
-        ) : null}
-        {project.demo ? (
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-xs text-phosphor-400 transition hover:text-amber-400"
-          >
-            $ open --demo →
-          </a>
-        ) : null}
-      </div>
+      <p className="mt-5 font-mono text-xs text-amber-400 transition group-hover:text-amber-300">
+        $ open {project.slug} →
+      </p>
 
       <MetadataFooter items={items} />
     </Card>

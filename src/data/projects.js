@@ -18,6 +18,22 @@ export const projects = [
       'Multi-tenant onboarding, auth, and task command center',
     ],
     meta: { uptime: 'building', replicas: '7/7', lastDeploy: '2026-05-01' },
+    problem:
+      'AI tooling treats agents as isolated chatbots, but real execution requires coordination — sequencing, dependencies, refinement loops, and handoffs across roles. A founder issuing a single directive should not have to babysit five tools.',
+    architecture: [
+      'DAG-based task model: validates dependencies, detects cycles, schedules ready work, supports refinement loops when upstream artifacts change.',
+      'Multi-tenant org structure — companies own departments; departments own agents; agents own tasks and artifacts.',
+      'Express + JWT for auth and tenant isolation; founder-facing command center renders the live execution graph.',
+      'Executive agents route intent into department specialists; orchestrator decides what is eligible to run next.',
+    ],
+    outcome: [
+      'Founders operate via directives, not prompts — the platform owns sequencing and escalation.',
+      'Refinement loops let downstream agents flag insufficient inputs and trigger upstream rework safely.',
+    ],
+    tradeoffs: [
+      'DAG validation cost grows with org complexity — mitigated by per-tenant graph caching.',
+      'Confidence thresholds are hand-tuned; replacing with learned policies is a v2 bet.',
+    ],
   },
   {
     slug: 'personal-website-platform',
@@ -72,6 +88,23 @@ export const projects = [
       'Integrated storage, TLS, VPN, monitoring, and Postgres',
     ],
     meta: { uptime: '412d', replicas: '12/12', lastDeploy: '2026-04-29' },
+    problem:
+      'Most homelabs become a pile of disconnected services with no operating model. I wanted a constrained environment that exercises the same decisions production platforms force — paved roads, GitOps, observability, recovery — but on a single bare-metal node.',
+    architecture: [
+      'k3s on a single bare-metal node, ArgoCD sync from GitHub, Traefik for ingress, cert-manager for TLS automation.',
+      'Longhorn for block storage, CloudNativePG for managed Postgres, Dragonfly for in-memory cache, Istio for service mesh.',
+      'OpenTelemetry collector feeding kube-prometheus-stack; Grafana dashboards baked into the GitOps repo.',
+      'Custom Go operator monitors workload health and triggers controlled recovery on drift.',
+    ],
+    outcome: [
+      'Single source of truth — every cluster change goes through a PR.',
+      'Drop-in disaster recovery: blow away the node, re-bootstrap, ArgoCD reconverges in under 20 minutes.',
+      'Repository doubles as a runbook — bootstrap scripts, ADRs, CI workflows live alongside manifests.',
+    ],
+    tradeoffs: [
+      'Single node means no real HA — explicit choice, scoped to a learning environment.',
+      'Operator pattern is overkill for a homelab — included to exercise the design, not because the workload demands it.',
+    ],
   },
   {
     slug: 'cicd-onboarding-platform',
@@ -122,3 +155,5 @@ export const FEATURED_SLUGS = ['homelab-platform', '0rca', 'career-agent'];
 export const featuredProjects = FEATURED_SLUGS.map((slug) =>
   projects.find((project) => project.slug === slug),
 ).filter(Boolean);
+
+export const findProjectBySlug = (slug) => projects.find((project) => project.slug === slug);
