@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-export function BlogCard({ post, onOpen }) {
+export function BlogCard({ post }) {
   return (
     <motion.article
       layout
@@ -18,13 +19,12 @@ export function BlogCard({ post, onOpen }) {
         ))}
       </div>
       <div className="mt-auto pt-6">
-        <button
-          type="button"
-          onClick={() => onOpen(post)}
+        <Link
+          to={`/posts/${post.slug}`}
           className="self-start rounded-full border border-white/10 px-4 py-2 text-sm text-white transition hover:border-cyan-300/40"
         >
           Read Post
-        </button>
+        </Link>
       </div>
     </motion.article>
   );
