@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BlogCard } from '../components/BlogCard';
-import { Hero } from '../components/Hero';
+import { OperatorConsole } from '../components/hero/OperatorConsole';
 import { ProjectCard } from '../components/ProjectCard';
 import { SectionWrapper } from '../components/SectionWrapper';
 import { FilterBar } from '../components/primitives';
@@ -42,7 +42,7 @@ export function Home() {
 
   return (
     <>
-      <Hero />
+      <OperatorConsole />
 
       <SectionWrapper
         id="projects"
