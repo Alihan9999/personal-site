@@ -1,5 +1,5 @@
 export const currentFocus = {
-  title: 'shipping 0rca v0.3 — DAG-based agent orchestration',
+  title: 'shipping LVLUpEngineer v0.1 - GitHub-verified skill growth',
   status: 'building',
   region: 'us-mw',
 };

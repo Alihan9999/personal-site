@@ -3,11 +3,11 @@ export const projectFilters = ['All', 'Product', 'AI', 'CI/CD', 'Cloud', 'Automa
 export const projects = [
   {
     slug: 'lvlupeng',
-    title: 'LVLUpEng',
+    title: 'LVLUpEngineer',
     description:
       'Currently building an engineer growth platform that turns career development into a skill tree backed by real GitHub evidence.',
     details:
-      'LVLUpEng is my current product focus: a Next.js application that helps engineers assess their strengths, discover an engineer archetype, follow a domain-based skill roadmap, and verify progress through real repository artifacts. The product is built around deterministic GitHub signals rather than self-reported confidence, so progress can be tied to inspectable evidence like tests, CI workflows, Dockerfiles, Terraform modules, conventional commits, documentation, and project structure.',
+      'LVLUpEngineer is my current product focus: a Next.js application that helps engineers assess their strengths, discover an engineer archetype, follow a domain-based skill roadmap, and verify progress through real repository artifacts. The product is built around deterministic GitHub signals rather than self-reported confidence, so progress can be tied to inspectable evidence like tests, CI workflows, Dockerfiles, Terraform modules, conventional commits, documentation, and project structure.',
     tech: ['Next.js', 'React', 'Auth.js', 'Drizzle', 'Postgres'],
     tags: ['Product', 'Automation'],
     github: '',
@@ -19,7 +19,7 @@ export const projects = [
     ],
     meta: { uptime: 'building', replicas: 'v0.1', lastDeploy: '2026-05-17' },
     problem:
-      'Engineers often know they need to grow, but the next step is fuzzy: generic course lists, self-reported skill claims, and portfolio advice that does not tie back to real work. LVLUpEng turns that into a concrete roadmap with inspectable proof.',
+      'Engineers often know they need to grow, but the next step is fuzzy: generic course lists, self-reported skill claims, and portfolio advice that does not tie back to real work. LVLUpEngineer turns that into a concrete roadmap with inspectable proof.',
     architecture: [
       'Next.js app with Auth.js, Drizzle, Postgres, and a structured catalog of domains, archetypes, skill nodes, and project manifests.',
       'Deterministic detector pipeline maps repository artifacts to skill evidence instead of trusting checkbox progress.',
@@ -49,7 +49,7 @@ export const projects = [
     metrics: [
       '7 AI departments with executive routing',
       'DAG-based dependency scheduling and handoffs',
-      'Learning project that shaped the direction for LVLUpEng',
+      'Learning project that shaped the direction for LVLUpEngineer',
     ],
     meta: { uptime: 'building', replicas: '7/7', lastDeploy: '2026-05-01' },
     problem:
