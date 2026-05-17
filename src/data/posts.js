@@ -2,6 +2,23 @@ export const blogFilters = ['All', 'AI', 'DevOps', 'AWS', 'CI/CD', 'Thoughts'];
 
 export const posts = [
   {
+    slug: 'from-0rca-to-lvlupeng',
+    title: 'From 0rca to LVLUpEng: What I Am Building Next',
+    preview:
+      '0rca is no longer my currently shipping product. It became the systems-design learning ground that shaped my next product: LVLUpEng.',
+    date: 'May 17, 2026',
+    tags: ['DevOps', 'Thoughts'],
+    body: [
+      '0rca is no longer the product I am actively shipping. I still think it was one of the most useful builds I have taken on, but I see it differently now: less as the final company I wanted to push into market, and more as a serious learning experience in orchestration, agent workflows, product scope, and how complex software starts to behave when every feature depends on the next system around it.',
+      'The useful part of 0rca was not just the AI wrapper. It forced me to think through company objects, departments, agents, directives, DAG-based execution, dependency management, handoffs, and refinement loops. Those are real platform problems. Building it gave me a much better feel for where agentic software becomes powerful, where it becomes hard to explain, and where a product can get too abstract before the user has a concrete win.',
+      'That lesson is what led me toward LVLUpEng. Instead of building an AI company operating system around a broad founder workflow, I am now focused on a narrower and more personal problem: helping engineers understand what to learn next, prove what they already know, and turn career growth into visible technical evidence.',
+      'LVLUpEng turns engineering development into a skill tree. The product starts with an assessment, maps users into engineer archetypes, and gives them a roadmap across domains like Git, Linux, cloud, CI/CD, DevOps, backend, frontend, security, systems, QA, mobile, data engineering, and AI engineering. The goal is not to make learning feel like school. The goal is to make growth feel like engineering: concrete tasks, real artifacts, and visible progression.',
+      'The part I care about most is verification. LVLUpEng is being designed around GitHub-backed proof instead of self-reported confidence. A skill should not become verified because someone clicked a checkbox or because an AI model liked the answer. It should become verified because deterministic signals found real evidence in a repository: workflows, tests, Dockerfiles, Terraform modules, conventional commits, project structure, documentation, and other artifacts that hiring managers and senior engineers can actually inspect.',
+      'That architecture is why the product has a real data foundation behind it. The current build uses Next.js, React, Auth.js, Drizzle, Postgres, Tailwind, and a detector pipeline that can grow over time. The product surface may look like a career app, but the engineering problem underneath is platform-oriented: modeling skills, mapping evidence, protecting privacy, keeping verification auditable, and making the next step obvious without turning the experience into another generic course catalog.',
+      'So 0rca was not a failure; it was the project that clarified the direction. It taught me that orchestration is only valuable when it points at a sharp user problem. LVLUpEng is the sharper version of that lesson. It is the product I am focused on now: a practical, evidence-driven way for engineers to level up through real work.',
+    ],
+  },
+  {
     slug: 'building-0rca-ai-company-operating-system',
     title: 'Building 0rca: An AI Company Operating System',
     preview:

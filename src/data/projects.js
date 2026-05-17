@@ -1,21 +1,55 @@
-export const projectFilters = ['All', 'AI', 'CI/CD', 'Cloud', 'Automation', 'Observability'];
+export const projectFilters = ['All', 'Product', 'AI', 'CI/CD', 'Cloud', 'Automation', 'Observability'];
 
 export const projects = [
+  {
+    slug: 'lvlupeng',
+    title: 'LVLUpEng',
+    description:
+      'Currently building an engineer growth platform that turns career development into a skill tree backed by real GitHub evidence.',
+    details:
+      'LVLUpEng is my current product focus: a Next.js application that helps engineers assess their strengths, discover an engineer archetype, follow a domain-based skill roadmap, and verify progress through real repository artifacts. The product is built around deterministic GitHub signals rather than self-reported confidence, so progress can be tied to inspectable evidence like tests, CI workflows, Dockerfiles, Terraform modules, conventional commits, documentation, and project structure.',
+    tech: ['Next.js', 'React', 'Auth.js', 'Drizzle', 'Postgres'],
+    tags: ['Product', 'Automation'],
+    github: '',
+    demo: '',
+    metrics: [
+      'Active product focus',
+      'GitHub-backed skill verification model',
+      'Skill trees, archetypes, quests, badges, and progress tracking',
+    ],
+    meta: { uptime: 'building', replicas: 'v0.1', lastDeploy: '2026-05-17' },
+    problem:
+      'Engineers often know they need to grow, but the next step is fuzzy: generic course lists, self-reported skill claims, and portfolio advice that does not tie back to real work. LVLUpEng turns that into a concrete roadmap with inspectable proof.',
+    architecture: [
+      'Next.js app with Auth.js, Drizzle, Postgres, and a structured catalog of domains, archetypes, skill nodes, and project manifests.',
+      'Deterministic detector pipeline maps repository artifacts to skill evidence instead of trusting checkbox progress.',
+      'GitHub-backed verification model keeps raw source private while storing auditable evidence summaries and verification results.',
+      'Skill tree, dashboard, onboarding, achievements, and project catalog work together as one career-growth loop.',
+    ],
+    outcome: [
+      'Engineers get a clearer answer to what to learn next based on their archetype and weak areas.',
+      'Progress is anchored to artifacts that senior engineers and hiring managers can inspect.',
+    ],
+    tradeoffs: [
+      'The product is intentionally narrower than 0rca so each feature points at one core user problem.',
+      'Verification starts with deterministic signals; advisory AI review can add context later without becoming the source of truth.',
+    ],
+  },
   {
     slug: '0rca',
     title: '0rca',
     description:
-      'Built an AI company operating system that lets a solo founder dispatch directives across a multi-agent org, with DAG-based task orchestration and department-level execution.',
+      'Built an AI company operating system prototype that became a deep learning project in multi-agent orchestration and systems design.',
     details:
-      'Designed 0rca as a multi-tenant AI operating system for startups, where a founder can create a company, activate departments, hire AI agents, and route directives through executive and specialist workflows. Under the hood, the orchestration layer uses a DAG model to validate dependencies, schedule ready tasks, manage handoffs between departments, and trigger refinement loops when upstream artifacts change. The platform also includes onboarding, authentication, team management, a command center dashboard, and marketing workflow support.',
+      'Designed 0rca as a multi-tenant AI operating system for startups, where a founder can create a company, activate departments, hire AI agents, and route directives through executive and specialist workflows. The project is no longer my currently shipping product, but it became an important learning experience around orchestration, product scope, agent coordination, and dependency-driven execution. Under the hood, the orchestration layer uses a DAG model to validate dependencies, schedule ready tasks, manage handoffs between departments, and trigger refinement loops when upstream artifacts change.',
     tech: ['Node.js', 'Express', 'DAG Orchestration', 'JWT'],
     tags: ['AI', 'Automation'],
-    github: '',
+    github: 'https://github.com/Alihan9999/0rca/',
     demo: '',
     metrics: [
       '7 AI departments with executive routing',
       'DAG-based dependency scheduling and handoffs',
-      'Multi-tenant onboarding, auth, and task command center',
+      'Learning project that shaped the direction for LVLUpEng',
     ],
     meta: { uptime: 'building', replicas: '7/7', lastDeploy: '2026-05-01' },
     problem:
@@ -150,7 +184,7 @@ export const projects = [
   },
 ];
 
-export const FEATURED_SLUGS = ['homelab-platform', '0rca', 'career-agent'];
+export const FEATURED_SLUGS = ['lvlupeng', 'homelab-platform', '0rca'];
 
 export const featuredProjects = FEATURED_SLUGS.map((slug) =>
   projects.find((project) => project.slug === slug),
