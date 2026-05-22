@@ -6,7 +6,7 @@ export function StackBento() {
   return (
     <motion.section
       id="stack"
-      className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8"
+      className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}

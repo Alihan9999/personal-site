@@ -6,7 +6,7 @@ export function AboutBlock() {
   return (
     <motion.section
       id="about"
-      className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8"
+      className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-20"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}

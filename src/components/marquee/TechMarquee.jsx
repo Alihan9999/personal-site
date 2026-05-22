@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   motion,
   useAnimationFrame,
@@ -24,6 +24,7 @@ export function TechMarquee() {
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
   const directionRef = useRef(1);
   const x = useTransform(baseX, (value) => `${wrap(-25, -75, value)}%`);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useAnimationFrame((_, delta) => {
     if (reduced) return;
@@ -40,19 +41,35 @@ export function TechMarquee() {
     return undefined;
   }, [baseX, reduced]);
 
+  useEffect(() => {
+    if (reduced) return undefined;
+    const id = window.setInterval(() => {
+      setActiveIndex(Math.floor(Math.random() * repeated.length));
+      window.setTimeout(() => setActiveIndex(-1), 380);
+    }, 900);
+    return () => window.clearInterval(id);
+  }, [reduced]);
+
   return (
-    <section className="relative mx-auto max-w-7xl overflow-hidden px-5 py-8 sm:px-6 lg:px-8" aria-hidden="true">
+    <section className="relative w-full overflow-hidden py-8" aria-hidden="true">
       <div className="overflow-hidden border-y border-white/10 py-5 light:border-ink-900/10">
         <motion.div className="flex whitespace-nowrap" style={reduced ? undefined : { x }}>
-          {repeated.map((item, index) => (
-            <span
-              key={`${item}-${index}`}
-              className="mx-6 font-mono text-base uppercase tracking-[0.18em] text-slate-400 light:text-slate-500"
-            >
-              {item}
-              <span className="mx-6 text-phosphor-400/40">/</span>
-            </span>
-          ))}
+          {repeated.map((item, index) => {
+            const active = index === activeIndex;
+            return (
+              <span
+                key={`${item}-${index}`}
+                className={`mx-6 font-mono text-base uppercase tracking-[0.18em] transition-colors duration-200 ${
+                  active
+                    ? 'text-phosphor-400 [text-shadow:0_0_18px_rgba(52,211,154,0.45)]'
+                    : 'text-slate-200 light:text-ink-700'
+                }`}
+              >
+                {item}
+                <span className="mx-6 text-phosphor-400/40">/</span>
+              </span>
+            );
+          })}
         </motion.div>
       </div>
     </section>

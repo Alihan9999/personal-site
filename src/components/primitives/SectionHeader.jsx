@@ -21,7 +21,7 @@ export function SectionHeader({ resource, status = 'Ready', age, title, descript
         {action ? <div>{action}</div> : null}
       </div>
       <div className="mt-5 max-w-3xl">
-        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl light:text-ink-900">
+        <h2 className="font-mono text-[1.6rem] font-medium leading-[1.25] tracking-tight text-white sm:text-[1.9rem] light:text-ink-900">
           {title}
         </h2>
         {description ? (

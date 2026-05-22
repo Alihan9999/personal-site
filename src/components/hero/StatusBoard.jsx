@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useGitHubProfile } from '../../hooks/useGitHubProfile';
 import { firstCommitYears, personaStatusRow } from '../../data';
 
@@ -10,7 +11,17 @@ const columns = [
   { key: 'since', label: 'SINCE' },
 ];
 
-export function StatusBoard() {
+const rowVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+};
+
+const cellVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.35, ease: 'easeOut' } },
+};
+
+export function StatusBoard({ boot = false }) {
   const profile = useGitHubProfile();
   const row = {
     name: personaStatusRow.name,
@@ -34,7 +45,12 @@ export function StatusBoard() {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-t border-white/10 light:border-slate-200/80">
+          <motion.tr
+            className="border-t border-white/10 light:border-slate-200/80"
+            variants={rowVariants}
+            initial={boot ? 'hidden' : 'visible'}
+            animate="visible"
+          >
             {columns.map((col) => {
               const value = row[col.key];
               const isStatus = col.key === 'status';
@@ -50,12 +66,16 @@ export function StatusBoard() {
                       : 'text-phosphor-400'
                     : 'text-slate-200 light:text-ink-700';
               return (
-                <td key={col.key} className={`py-3 pr-6 ${className}`}>
+                <motion.td
+                  key={col.key}
+                  variants={cellVariants}
+                  className={`py-3 pr-6 ${className}`}
+                >
                   {value}
-                </td>
+                </motion.td>
               );
             })}
-          </tr>
+          </motion.tr>
         </tbody>
       </table>
     </div>

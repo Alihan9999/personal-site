@@ -24,7 +24,7 @@ export function Card({
   const base =
     'group relative flex h-full flex-col overflow-hidden border border-white/10 bg-white/[0.04] shadow-[0_18px_60px_rgba(8,15,30,0.28)] transition light:bg-white/70 light:border-ink-900/10';
   const hover = interactive
-    ? 'hover:border-amber-400/40 hover:bg-white/[0.06] focus-within:border-amber-400/60'
+    ? 'cursor-pointer hover:border-amber-400/40 hover:bg-white/[0.06] focus-within:border-amber-400/60 focus-visible:outline-2 focus-visible:outline-amber-400 focus-visible:outline-offset-2'
     : '';
   const Component = Tag === 'article' ? motion.article : motion[Tag] ?? motion.div;
   const motionProps = interactive && !reduced ? { whileHover: { y: -4 } } : {};

@@ -9,14 +9,14 @@ export function NowRunning() {
   return (
     <motion.section
       id="now"
-      className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8"
+      className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
     >
-      <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-slate-500">
-        <span className="text-slate-600">$ </span>
+      <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-slate-500 light:text-ink-700/80">
+        <span className="text-slate-600 light:text-ink-700/60">$ </span>
         watch -n 5 status
       </p>
       <div className="grid grid-cols-12 gap-4">
